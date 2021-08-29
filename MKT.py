@@ -4,7 +4,8 @@ from matplotlib import rc, rcParams
 
 
 class Axes():
-    def __init__(self,length, y, x, linewidth=None, head_width=None, head_length=None, null=False, ltx=False, fontsize=18, equal_aspect=True, yratio=1):        
+    def __init__(self,length, y, x, linewidth=None, head_width=None, head_length=None, null=False, ltx=False, fontsize=18, equal_aspect=True, yratio=1):
+        
         if linewidth is None:
             linewidth=length / 5
         if head_width is None:
@@ -40,8 +41,8 @@ class Axes():
         self.linewidth = linewidth
         self.yratio=yratio
         self.surf.axis('off')
-        self.surf.set_xlim([0, length])
-        self.surf.set_ylim([0, length])
+        #self.surf.set_xlim([0, length])
+        self.surf.set_ylim([-fontsize*0.04, length])
         self.surf.arrow(0, 0, 0, length*yratio, head_width=head_width, head_length=head_length, fc='k', lw=linewidth, clip_on=False)
         self.surf.arrow(0, 0, length, 0, head_width=head_width, head_length=head_length, fc='k', lw=linewidth, clip_on=False)
         self.surf.text(length, -linewidth/5, self.x_tag, ha='center', va='top', clip_on = False)
