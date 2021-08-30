@@ -42,7 +42,7 @@ class Axes():
         self.yratio=yratio
         self.surf.axis('off')
         #self.surf.set_xlim([0, length])
-        self.surf.set_ylim([-fontsize*0.04, length])
+        self.surf.set_ylim([-fontsize*0.04, length*yratio])
         self.surf.arrow(0, 0, 0, length*yratio, head_width=head_width, head_length=head_length, fc='k', lw=linewidth, clip_on=False)
         self.surf.arrow(0, 0, length, 0, head_width=head_width, head_length=head_length, fc='k', lw=linewidth, clip_on=False)
         self.surf.text(length, -linewidth/5, self.x_tag, ha='center', va='top', clip_on = False)
