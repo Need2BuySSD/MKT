@@ -77,6 +77,7 @@ class Axes():
             self.surf.arrow(x0, y0, (x1-x0)/2, (y1-y0)/2, fc='k', linewidth=linewidth, length_includes_head=False, head_width=linewidth/8, head_length=linewidth/8)
             
     def isothermal(self, state0, state1, lwmult=1, linestyle='-', arrow=True):
+        rev = False
         linewidth = self.linewidth * lwmult          
         if state1 is not None:
             # X
