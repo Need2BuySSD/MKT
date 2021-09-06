@@ -41,7 +41,6 @@ class Axes():
         self.linewidth = linewidth
         self.yratio=yratio
         self.surf.axis('off')
-        #self.surf.set_xlim([0, length])
         self.surf.set_ylim([-fontsize*0.04, length*yratio+1])
         self.surf.arrow(0, 0, 0, length*yratio, head_width=head_width, head_length=head_length, fc='k', lw=linewidth, clip_on=False)
         self.surf.arrow(0, 0, length, 0, head_width=head_width, head_length=head_length, fc='k', lw=linewidth, clip_on=False)
@@ -170,11 +169,19 @@ class Axes():
             
     def grid(self, step=1,  lwmult=0.25, linestyle='-'):
         linewidth = self.linewidth*lwmult
-        for x in range(0, self.length+step, step):
-            self.surf.plot((x, x), (0, int(self.length*self.yratio)), str('k' + linestyle), linewidth = linewidth)
-        for y in range(0, int(self.length*self.yratio)+step, step):
-            self.surf.plot((0, self.length), (y, y), str('k' + linestyle), linewidth = linewidth)
-
+        x = step
+        y = step
+        xlim = self.length//step*step
+        ylim = self.length*self.yratio//step*step
+        while y <= self.length*self.yratio:  
+            self.surf.plot((0, xlim), (y, y), str('k' + linestyle), linewidth = linewidth)
+            y += step          
+        while x <= self.length:        
+            self.surf.plot((x, x), (0, ylim), str('k' + linestyle), linewidth = linewidth)
+            x += step    
+         
+            
+            
 class State():
     def __init__(self, axes, p=None, v=None, t=None, patch=None, patch_pos='T', xtick=True, ytick=True):
         self.axes = axes
